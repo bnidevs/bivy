@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fae4de;
+}
+
+wbr:after { 
+  content: "\00200B"; 
+}
+
+.hold {
+    filter: invert(98%) sepia(13%) saturate(5404%) hue-rotate(287deg) brightness(156%) contrast(73%);
+}
+
+@font-face {
+  font-family: "great_outdoors";
+  src: local("great_outdoors"),
+    url(./assets/fonts/TheGreatOutdoors.otf) format("opentype");
+}
