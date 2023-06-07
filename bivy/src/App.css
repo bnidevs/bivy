@@ -1,19 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime&family=Montserrat:wght@200;400;700&display=swap");
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   background-color: #fae4de;
+  overflow: hidden;
 }
 
-wbr:after { 
-  content: "\00200B"; 
+wbr:after {
+  content: "\00200B";
 }
 
 .hold {
-    filter: invert(98%) sepia(13%) saturate(5404%) hue-rotate(287deg) brightness(156%) contrast(73%);
+  filter: invert(65%) sepia(18%) saturate(1056%) hue-rotate(193deg)
+    brightness(97%) contrast(89%);
+  max-width: 400px;
+  max-height: 400px;
 }
 
 @font-face {
