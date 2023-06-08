@@ -68,15 +68,30 @@ function Holds() {
 
   useEffect(() => {
     let t = [];
-    for (let i = 0; i < 50; i++) {
+    let pos = [];
+    for (let i = 0; i < 150; i++) {
       const { path } = blobshape({
-        size: 20,
+        size: 25,
         growth: Math.floor(Math.random() * 5) + 3,
         edges: Math.floor(Math.random() * 12) + 6,
         seed: null,
       });
-      const x = Math.random() * 70 + 10;
-      const y = Math.random() * 3700 + 10;
+      let x = Math.random() * 70 + 10;
+      let y = Math.random() * 3700 + 10;
+      let b = false;
+      for(let j = 0; j < pos.length; j++){
+        if(Math.abs(pos[j][0] - x) + Math.abs(pos[j][1] - y) < 80){
+          b = true;
+          break;
+        }
+      }
+
+      if(b){
+        continue;
+      }
+
+      pos.push([x, y]);
+
       const svg = `<svg viewBox="0 0 100 100" class="hold" style="position: absolute; top:${y}px ; left:${x}vw"><path d="${path}" /></svg>`;
       t.push(svg);
     }

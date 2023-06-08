@@ -99,7 +99,7 @@ function Nav() {
 
 function App() {
   return (
-    <Col>
+    <Col style={{ position: "relative" }}>
       <Holds />
       <Nav />
       <Body />
