@@ -1,9 +1,11 @@
 const COLORS = {
-  bg: "#FAE4DE",
-  strong: "#2843C9",
-  altbg: "white",
-  altstrong: "#EE795E",
+  bg: "#FFF4F1",
+  strong: "#1E44D1",
+  altbg: "#FFFFFF",
+  altstrong: "#FF7155",
   metal: "#4D4D4D",
+  light_peach: "#FFE3DD",
+  peach: "#FFC6BB",
 };
 
 const VERTSIZES = {

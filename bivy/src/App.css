@@ -15,13 +15,6 @@ wbr:after {
   content: "\00200B";
 }
 
-.hold {
-  filter: invert(65%) sepia(18%) saturate(1056%) hue-rotate(193deg)
-    brightness(97%) contrast(89%);
-  max-width: 400px;
-  max-height: 400px;
-}
-
 @font-face {
   font-family: "great_outdoors";
   src: local("great_outdoors"),
