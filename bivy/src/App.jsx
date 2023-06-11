@@ -1,45 +1,12 @@
-import { COLORS, VERTSIZES } from "./Constants";
-import styled from "styled-components";
-import Logo from "./components/Logo";
 import Footer from "./components/Footer";
 import Body from "./Body";
-import { QuickLink, Rope, Carabiner, Holds } from "./components/Climbing";
-import { Row, Col, Link, Header, Subheader, ListDesc, VertSpacer, Title, ItemCtnr } from "./components/Basics";
+import { Carabiner } from "./components/Climbing";
+import { Col, Header, Subheader, ListDesc, VertSpacer, ItemCtnr } from "./components/Basics";
 import "./App.css";
-
-const Split = styled(Row)`
-  justify-content: space-between;
-`;
-
-const Menu = styled(Col)`
-  margin: 1em;
-  align-items: flex-end;
-`;
-
-function Nav() {
-  return (
-    <Split center>
-      <Row center>
-        <Col center>
-          <Logo />
-          <Rope />
-          <QuickLink />
-        </Col>
-        <Title>cafe</Title>
-      </Row>
-      <Menu>
-        <Link href="#menu">MENU</Link>
-        <Link href="#about">ABOUT</Link>
-      </Menu>
-    </Split>
-  );
-}
 
 function App() {
   return (
     <Col style={{ position: "relative" }}>
-      <Holds />
-      <Nav />
       <Body />
       <VertSpacer size={30} />
       <Carabiner />

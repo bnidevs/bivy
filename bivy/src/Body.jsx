@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { COLORS } from "./Constants";
-import { Carabiner } from "./components/Climbing";
+import { Carabiner, QuickLink, Rope, Holds } from "./components/Climbing";
 import Clipboard from "./components/Clipboard";
-import { Header, ListDesc, Text, Subheader, VertSpacer, ItemCtnr } from "./components/Basics";
+import { Header, ListDesc, Text, Subheader, VertSpacer, ItemCtnr, Row, Col, Title, Link } from "./components/Basics";
+import Logo from "./components/Logo";
 
 var strip = (resp) => {
   var qrystr = "Query.setResponse(";
@@ -11,6 +11,15 @@ var strip = (resp) => {
 
   return resp.substring(start, resp.length - 2);
 };
+
+const Split = styled(Row)`
+  justify-content: space-between;
+`;
+
+const Menu = styled(Col)`
+  margin: 1em;
+  align-items: flex-end;
+`;
 
 const ListItem = styled(ListDesc)`
   font-weight: 700;
@@ -24,6 +33,25 @@ const CenterText = styled(Text)`
   font-weight: 700;
   font-size: 1.2em;
 `;
+
+function Nav(props) {
+  return (
+    <Split center>
+      <Row center>
+        <Col center>
+          <Logo />
+          <Rope ropelen={props.ropelen}/>
+          <QuickLink />
+        </Col>
+        <Title>cafe</Title>
+      </Row>
+      <Menu>
+        <Link href="#menu">MENU</Link>
+        <Link href="#about">ABOUT</Link>
+      </Menu>
+    </Split>
+  );
+}
 
 function Body() {
   const [announcement, setAnnouncement] = useState("");
@@ -72,6 +100,7 @@ function Body() {
       }
       tempMenu[currCat] = items;
     }
+
     setMenu(tempMenu);
     setDescs(tempDescs);
   };
@@ -88,6 +117,8 @@ function Body() {
 
   return (
     <>
+      <Holds />
+      <Nav ropelen={Object.values(menu).flat().length + 3} />
       <VertSpacer size={announcement ? 8 : 25} />
       <CenterText w={50}>
         OPEN TO <wbr />VITAL MEMBERS + <wbr />

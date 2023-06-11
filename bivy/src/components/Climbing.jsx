@@ -147,11 +147,11 @@ function Holds() {
   );
 }
 
-function Rope() {
+function Rope(props) {
   return (
     <RopeCtnr>
       <RopeEnd />
-      {[...Array(35)].map((_, index) => (
+      {[...Array(props.ropelen)].map((_, index) => (
         <RopeSegment flip={index % 2 == 0} key={index} />
       ))}
     </RopeCtnr>
