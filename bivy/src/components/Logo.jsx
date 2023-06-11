@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import BivyLogo from "../assets/images/Bivy_SocialIcons_1.png";
 import "../App.css";
-import { COLORS } from "../Constants";
 import { Tape } from "./Climbing";
 
 const LogoImg = styled.img`
@@ -13,7 +12,7 @@ const LogoImg = styled.img`
 function Logo() {
   return (
     <>
-      <a name="home" href="#home">
+      <a name="home" href="#home" onTouchStart={() => {}}>
         <LogoImg src={BivyLogo} />
       </a>
       <Tape

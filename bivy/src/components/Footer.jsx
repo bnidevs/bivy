@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { COLORS } from "../Constants";
 import { InstagramBtn } from "./Social";
 import { useState, useEffect } from "react";
+import { Row } from "./Basics";
 import "../App.css";
 
 const StyledFooter = styled.div`
@@ -18,8 +19,7 @@ const Weighted = styled.p`
   font-weight: ${(props) => props.weight};
 `;
 
-const Row = styled.div`
-  display: flex;
+const CloseRow = styled(Row)`
   margin: -10px 0;
 `;
 
@@ -55,13 +55,13 @@ function Footer() {
         </TopButton>
       </a>
       <InstagramBtn />
-      <Row>
+      <CloseRow>
         <Weighted weight={700}>HOURS{"\u00A0"}</Weighted>
         <p>Mon - Fri 12 - 9, Sat - Sun 10 - 5</p>
-      </Row>
-      <Row>
+      </CloseRow>
+      <CloseRow>
         <p>VITAL Rooftop - 221 N 14th St, Brooklyn, NY</p>
-      </Row>
+      </CloseRow>
     </StyledFooter>
   );
 }

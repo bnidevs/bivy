@@ -6,13 +6,21 @@ html {
 }
 
 body {
-  background-color: #fae4de;
-  overflow: hidden;
+  background-color: #fff4f1;
+  overflow-x: hidden;
   min-height: 250em;
 }
 
 wbr:after {
   content: "\00200B";
+}
+
+a:focus, a:visited, a:active {
+  outline: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 @font-face {

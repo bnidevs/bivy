@@ -5,6 +5,7 @@ import BinerBot from "../assets/images/biner_bot.svg";
 import blobshape from "blobshape";
 import { useEffect, useState } from "react";
 import HoldSVGS from "./misc/HoldImports";
+import { Row } from "./Basics";
 
 const Col = styled.div`
   display: flex;
@@ -44,16 +45,16 @@ const RopeEnd = styled.div`
   box-shadow: 3px 0px ${COLORS.altstrong};
   transform: rotate(15deg) translate(1px, -2px);
   z-index: -20;
-`
+`;
 
 const RopeSegment = styled.div`
   border-radius: 50%;
   width: 1em;
-  height: 5em;
+  height: 8em;
   margin: -1px;
   box-shadow: ${(props) => (props.flip ? "-" : "")}3px 0px ${COLORS.altstrong};
   z-index: -10;
-  ${(props) => (props.flip ? "transform: translateX(6px);" : "")}
+  ${(props) => (props.flip ? "transform: translateX(5.5px);" : "")}
 `;
 
 const BinerHalf = styled.img`
@@ -73,10 +74,10 @@ const Tape = styled.div`
 
 const Hold = styled.img`
   position: absolute;
-  transform-origin: top left;
+  transform-origin: center center;
   top: 0;
   left: 0;
-`
+`;
 
 function Carabiner() {
   return (
@@ -99,12 +100,12 @@ function Holds() {
   useEffect(() => {
     let t = [];
 
-    for (let i = 0; i < 300; i++) {
-      let x = Math.random() * (window.innerWidth - 70) + 70;
-      let y = Math.random() * 3700 + 70;
+    for (let i = 0; i < 170; i++) {
+      let x = Math.random() * 65 + 5;
+      let y = Math.random() * 4000 + 70;
       let b = false;
       for (let j = 0; j < t.length; j++) {
-        if ((t[j].x - x) ** 2 + (t[j].y - y) ** 2 < 50000) {
+        if ((t[j].x - x) ** 2 < 300 && (t[j].y - y) ** 2 < 40000) {
           b = true;
           break;
         }
@@ -114,14 +115,15 @@ function Holds() {
         continue;
       }
 
-      let siz = Math.random() * 0.05 + 0.12;
+      let siz = Math.random() * 0.4 + 0.8;
       let rot = Math.floor(Math.random() * 360);
-      let clr = COLORS.peach;
+      let clr = [COLORS.peach, COLORS.light_peach][
+        Math.floor(Math.random() * 2)
+      ];
       let shp = HoldSVGS[Math.floor(Math.random() * 25)];
 
       t.push({ x, y, siz, rot, clr, shp });
     }
-    console.log(t);
 
     setHolds(t);
   }, []);
@@ -133,9 +135,10 @@ function Holds() {
           key={i}
           src={e.shp}
           style={{
-            transform: `scale(${e.siz}) rotate(${e.rot}deg)`,
-            left: `${e.x}px`,
+            transform: `rotate(${e.rot}deg)`,
+            left: `${e.x}vw`,
             top: `${e.y}px`,
+            width: `${e.siz * 125}px`,
             filter: `${colorFilters[e.clr]}`,
           }}
         />
@@ -148,7 +151,7 @@ function Rope() {
   return (
     <RopeCtnr>
       <RopeEnd />
-      {[...Array(48)].map((_, index) => (
+      {[...Array(35)].map((_, index) => (
         <RopeSegment flip={index % 2 == 0} key={index} />
       ))}
     </RopeCtnr>
