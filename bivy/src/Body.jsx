@@ -2,8 +2,21 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Carabiner, QuickLink, Rope, Holds } from "./components/Climbing";
 import Clipboard from "./components/Clipboard";
-import { Header, ListDesc, Text, Subheader, VertSpacer, ItemCtnr, Row, Col, Title, Link } from "./components/Basics";
+import {
+  Header,
+  ListDesc,
+  Text,
+  Subheader,
+  VertSpacer,
+  HoriSpacer,
+  ItemCtnr,
+  Row,
+  Col,
+  Title,
+  Link,
+} from "./components/Basics";
 import Logo from "./components/Logo";
+import VeganSym from "./assets/images/vegan_sym.svg";
 
 var strip = (resp) => {
   var qrystr = "Query.setResponse(";
@@ -27,11 +40,16 @@ const ListItem = styled(ListDesc)`
 `;
 
 const CenterText = styled(Text)`
-  margin: 10px ${props => props.w ? (100 - props.w) / 2 : 10}vw;
-  width: ${props => props.w ? props.w : 80}vw;
+  margin: 10px ${(props) => (props.w ? (100 - props.w) / 2 : 10)}vw;
+  width: ${(props) => (props.w ? props.w : 80)}vw;
   text-align: center;
   font-weight: 700;
   font-size: 1.2em;
+`;
+
+const VeganImg = styled.img`
+  width: 1em;
+  margin-right: 3px;
 `;
 
 function Nav(props) {
@@ -40,7 +58,7 @@ function Nav(props) {
       <Row center>
         <Col center>
           <Logo />
-          <Rope ropelen={props.ropelen}/>
+          <Rope ropelen={props.ropelen} />
           <QuickLink />
         </Col>
         <Title>cafe</Title>
@@ -58,16 +76,17 @@ function Body() {
   const [categories, setCategories] = useState([]);
   const [menu, setMenu] = useState({});
   const [descs, setDescs] = useState({});
+  const [vegan, setVegan] = useState({});
 
   const setData = (data) => {
-    if(data[1]["c"][0] != null && data[1]["c"][0]["v"] != null){
-        setAnnouncement(data[1]["c"][0]["v"]);
+    if (data[1]["c"][0] != null && data[1]["c"][0]["v"] != null) {
+      setAnnouncement(data[1]["c"][0]["v"]);
     }
 
     let categs = data[3]["c"];
     let tempIndices = {};
     categs = categs.map((e, i) => {
-      if (e != null && e["v"] != null && e["v"] != "Descriptions") {
+      if (e != null && ![null, "Descriptions", "Vegan?"].includes(e["v"])) {
         tempIndices[e["v"]] = i;
         return e["v"];
       }
@@ -77,6 +96,7 @@ function Body() {
 
     const tempMenu = {};
     const tempDescs = {};
+    const tempVegan = {};
     for (let j = 0; j < categs.length; j++) {
       const currCat = categs[j];
       const catIndx = tempIndices[currCat];
@@ -87,12 +107,20 @@ function Body() {
           data[i]["c"][catIndx] != null &&
           data[i]["c"][catIndx]["v"] != null
         ) {
-          items.push(data[i]["c"][catIndx]["v"]);
+          const item = data[i]["c"][catIndx]["v"];
+          items.push(item);
+          if (
+            data[i]["c"][catIndx + 2] != null &&
+            data[i]["c"][catIndx + 2]["v"] != null
+          ) {
+            tempDescs[item] = data[i]["c"][catIndx + 2]["v"];
+          }
+
           if (
             data[i]["c"][catIndx + 1] != null &&
             data[i]["c"][catIndx + 1]["v"] != null
           ) {
-            tempDescs[data[i]["c"][catIndx]["v"]] = data[i]["c"][catIndx + 1]["v"];
+            tempVegan[item] = true;
           }
         } else {
           break;
@@ -103,6 +131,7 @@ function Body() {
 
     setMenu(tempMenu);
     setDescs(tempDescs);
+    setVegan(tempVegan);
   };
 
   useEffect(() => {
@@ -118,10 +147,20 @@ function Body() {
   return (
     <>
       <Holds />
-      <Nav ropelen={Object.values(menu).flat().length + 3} />
+      <Nav
+        ropelen={Math.max(
+          0,
+          Object.values(menu).flat().length +
+            Object.values(descs).flat().length +
+            (announcement ? 3 : 0) -
+            Math.floor(window.innerHeight / 64) +
+            10
+        )}
+      />
       <VertSpacer size={announcement ? 8 : 25} />
       <CenterText w={50}>
-        OPEN TO <wbr />VITAL MEMBERS + <wbr />
+        OPEN TO <wbr />
+        VITAL MEMBERS + <wbr />
         DAY PASS HOLDERS
       </CenterText>
       <CenterText>7 DAYS A WEEK</CenterText>
@@ -134,17 +173,33 @@ function Body() {
           <div key={i}>
             <Subheader>{e}</Subheader>
             {menu[e].map((x, j) => {
-                return (
-                    <ItemCtnr key={j}>
-                        <ListItem>{x}</ListItem>
-                        <ListDesc>{descs[x]}</ListDesc>
-                    </ItemCtnr>
-                )
+              return (
+                <ItemCtnr key={j}>
+                  <Row center>
+                    <ListItem>{x}</ListItem>
+                    {x in vegan && (
+                      <Row center>
+                        <HoriSpacer size="0.3em" />
+                        <VeganImg src={VeganSym} />
+                      </Row>
+                    )}
+                  </Row>
+                  <ListDesc>{descs[x]}</ListDesc>
+                </ItemCtnr>
+              );
             })}
             <VertSpacer size={10} />
           </div>
         );
       })}
+      <Row center>
+        <ItemCtnr>
+          <Row center>
+            <VeganImg src={VeganSym} />
+            <ListDesc> = Vegan</ListDesc>
+          </Row>
+        </ItemCtnr>
+      </Row>
     </>
   );
 }

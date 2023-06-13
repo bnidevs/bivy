@@ -1,7 +1,14 @@
 import Footer from "./components/Footer";
 import Body from "./Body";
 import { Carabiner } from "./components/Climbing";
-import { Col, Header, Subheader, ListDesc, VertSpacer, ItemCtnr } from "./components/Basics";
+import {
+  Col,
+  Header,
+  Subheader,
+  ListDesc,
+  VertSpacer,
+  ItemCtnr,
+} from "./components/Basics";
 import "./App.css";
 
 function App() {

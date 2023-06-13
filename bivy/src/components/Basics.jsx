@@ -60,8 +60,37 @@ const VertSpacer = styled.div`
   height: ${(props) => props.size}vh;
 `;
 
-const ItemCtnr = styled.div`
-    margin: 20px 6em;
-`
+const HoriSpacer = styled.div`
+  width: ${(props) => props.size};
+`;
 
-export {Row, Col, Link, Header, Subheader, ListDesc, Title, Text, VertSpacer, ItemCtnr};
+const ItemCtnr = styled.div`
+  margin: 20px 6em;
+`;
+
+const EmojiStyle = styled.span`
+  font-size: 1.5em;
+`;
+
+function Emoji(props) {
+  return (
+    <EmojiStyle role="img" aria-label={props.label}>
+      {props.symbol}
+    </EmojiStyle>
+  );
+}
+
+export {
+  Row,
+  Col,
+  Link,
+  Header,
+  Subheader,
+  ListDesc,
+  Title,
+  Text,
+  VertSpacer,
+  ItemCtnr,
+  HoriSpacer,
+  Emoji,
+};

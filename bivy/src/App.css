@@ -7,7 +7,7 @@ html {
 
 body {
   background-color: #fff4f1;
-  overflow-x: hidden;
+  overflow: hidden;
   min-height: 250em;
 }
 
@@ -15,7 +15,9 @@ wbr:after {
   content: "\00200B";
 }
 
-a:focus, a:visited, a:active {
+a:focus,
+a:visited,
+a:active {
   outline: none;
 }
 
