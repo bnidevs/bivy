@@ -15,7 +15,7 @@ const Hanger = styled.div`
 
 const Back = styled.div`
   width: 10em;
-  padding: 5px;
+  padding: 10px;
   border-radius: 2px;
   background-color: sienna;
   z-index: 0;

@@ -12,7 +12,6 @@ import {
   ItemCtnr,
   Row,
   Col,
-  Title,
   Link,
 } from "./components/Basics";
 import Logo from "./components/Logo";
@@ -49,6 +48,7 @@ const CenterText = styled(Text)`
 
 const VeganImg = styled.img`
   width: 1em;
+  height: 1em;
   margin-right: 3px;
 `;
 
@@ -58,10 +58,17 @@ function Nav(props) {
       <Row center>
         <Col center>
           <Logo />
-          <Rope ropelen={props.ropelen} />
-          <QuickLink />
+          <div
+            style={{
+              transform: "translateX(-3.5em)",
+              margin: "-13.5em 0 0",
+              zIndex: "-10",
+            }}
+          >
+            <Rope ropelen={props.ropelen} />
+            <QuickLink />
+          </div>
         </Col>
-        <Title>cafe</Title>
       </Row>
       <Menu>
         <Link href="#menu">MENU</Link>
@@ -180,7 +187,7 @@ function Body() {
                     {x in vegan && (
                       <Row center>
                         <HoriSpacer size="0.3em" />
-                        <VeganImg src={VeganSym} />
+                        <VeganImg alt={"vegan"} src={VeganSym} />
                       </Row>
                     )}
                   </Row>
@@ -195,7 +202,7 @@ function Body() {
       <Row center>
         <ItemCtnr>
           <Row center>
-            <VeganImg src={VeganSym} />
+            <VeganImg alt={"vegan"} src={VeganSym} />
             <ListDesc> = Vegan</ListDesc>
           </Row>
         </ItemCtnr>

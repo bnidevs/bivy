@@ -30,7 +30,7 @@ const Header = styled(Link)`
 const Subheader = styled.p`
   font-family: Montserrat;
   font-size: 1.75em;
-  color: ${COLORS.altstrong};
+  color: ${COLORS.semistrong};
   margin: 0px 3.2em;
   font-weight: 400;
 `;
@@ -46,7 +46,7 @@ const ListDesc = styled.p`
   font-family: Montserrat;
   font-size: 1em;
   color: ${COLORS.metal};
-  margin: 5px 0;
+  margin: 0 0 5px;
 `;
 
 const Text = styled.p`
@@ -65,7 +65,7 @@ const HoriSpacer = styled.div`
 `;
 
 const ItemCtnr = styled.div`
-  margin: 20px 6em;
+  margin: 15px 6em;
 `;
 
 const EmojiStyle = styled.span`

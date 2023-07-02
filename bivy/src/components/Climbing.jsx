@@ -2,10 +2,8 @@ import styled from "styled-components";
 import { COLORS } from "../Constants";
 import BinerTop from "../assets/images/biner_top.svg";
 import BinerBot from "../assets/images/biner_bot.svg";
-import blobshape from "blobshape";
 import { useEffect, useState } from "react";
 import HoldSVGS from "./misc/HoldImports";
-import { Row } from "./Basics";
 
 const Col = styled.div`
   display: flex;
@@ -65,10 +63,16 @@ const BinerHalf = styled.img`
   z-index: ${(props) => props.z};
 `;
 
+const TapeBGs = {
+  PRIDE:
+    "linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%)",
+  DEFAULT: COLORS.altstrong,
+};
+
 const Tape = styled.div`
   position: absolute;
   width: 10px;
-  background-color: ${COLORS.altstrong};
+  background: ${TapeBGs.DEFAULT};
   height: 50px;
 `;
 
@@ -82,8 +86,8 @@ const Hold = styled.img`
 function Carabiner() {
   return (
     <Col>
-      <BinerHalf src={BinerTop} z={-12} />
-      <BinerHalf src={BinerBot} z={0} />
+      <BinerHalf alt={""} src={BinerTop} z={-12} />
+      <BinerHalf alt={""} src={BinerBot} z={0} />
     </Col>
   );
 }
@@ -133,6 +137,7 @@ function Holds() {
       {holds.map((e, i) => (
         <Hold
           key={i}
+          alt={""}
           src={e.shp}
           style={{
             transform: `rotate(${e.rot}deg)`,

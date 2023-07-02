@@ -19,6 +19,7 @@ const SocialBubble = styled.div`
 
 const Social = styled.img`
   width: 2.5em;
+  height: 2.5em;
   filter: invert(100%) sepia(0%) saturate(7493%) hue-rotate(320deg)
     brightness(104%) contrast(100%);
 `;

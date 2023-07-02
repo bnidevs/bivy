@@ -57,7 +57,7 @@ function Footer() {
       <InstagramBtn />
       <CloseRow>
         <Weighted weight={700}>HOURS{"\u00A0"}</Weighted>
-        <p>Mon - Fri 12 - 9, Sat - Sun 10 - 5</p>
+        <p>Mon - Fri 12 - 9, Sat - Sun 11 - 6</p>
       </CloseRow>
       <CloseRow>
         <p>VITAL Rooftop - 221 N 14th St, Brooklyn, NY</p>

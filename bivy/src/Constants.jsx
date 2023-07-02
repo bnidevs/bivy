@@ -6,6 +6,7 @@ const COLORS = {
   metal: "#4D4D4D",
   light_peach: "#FFE3DD",
   peach: "#FFC6BB",
+  semistrong: "#1A2B5B",
 };
 
 const VERTSIZES = {

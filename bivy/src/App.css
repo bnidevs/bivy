@@ -29,4 +29,5 @@ a:active {
   font-family: "great_outdoors";
   src: local("great_outdoors"),
     url(./assets/fonts/TheGreatOutdoors.otf) format("opentype");
+  font-display: swap;
 }
